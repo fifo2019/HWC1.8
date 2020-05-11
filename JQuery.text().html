@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <p class="p1">text1</p>
+    <p>text2</p>
+    <p>text3</p>
+    <p>text4</p>
+    <p>text5</p>
+    <p>text6</p>
+    <p>text7</p>
+
+<script>
+
+    function jQuery (selector, context = document){
+        this.elements = Array.from(context.querySelectorAll(selector));
+        return this
+    }
+
+    jQuery.prototype.each = function(fn) {
+        this.elements.forEach((element, index) => fn.call(element, element, index));
+        return this;
+    };
+
+
+    jQuery.prototype.text = function (text) {
+        if (text) {
+            this.each(element => element.textContent = `${text}`);
+        } else {
+            this.each(element => console.log(element.textContent));
+        }
+
+        return this;
+    };
+
+    const $ = (e) => new jQuery(e);
+
+    $('p').text().text('New Text').text();
+
+</script>
+</body>
+</html>
